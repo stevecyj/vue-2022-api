@@ -24,20 +24,20 @@
       <button type="button" id="delProduct">刪除一個產品</button>
     </div>
     <script>
-      const url = 'https://vue3-course-api.hexschool.io/v2'; // 請加入站點
-      const path = 'steve-vue'; // 請加入個人 API Path
+      const url = "https://vue3-course-api.hexschool.io/v2"; // 請加入站點
+      const path = "steve-vue"; // 請加入個人 API Path
 
       // #1 如何串接 API
 
-      const emailInput = document.querySelector('#email');
-      const passwordInput = document.querySelector('#password');
-      const loginBtn = document.querySelector('#login');
-      const checkBtn = document.querySelector('#check');
-      const getProductsBtn = document.querySelector('#getProducts');
-      const addProductBtn = document.querySelector('#addProduct');
-      const delProductBtn = document.querySelector('#delProduct');
+      const emailInput = document.querySelector("#email");
+      const passwordInput = document.querySelector("#password");
+      const loginBtn = document.querySelector("#login");
+      const checkBtn = document.querySelector("#check");
+      const getProductsBtn = document.querySelector("#getProducts");
+      const addProductBtn = document.querySelector("#addProduct");
+      const delProductBtn = document.querySelector("#delProduct");
 
-      loginBtn.addEventListener('click', login);
+      loginBtn.addEventListener("click", login);
 
       function login() {
         const username = emailInput.value;
@@ -65,15 +65,14 @@
           });
       }
 
-      // #3 取得 Token (Token 僅需設定一次)
-      const token = document.cookie.replace(
-        /(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      );
-      axios.defaults.headers.common['Authorization'] = token;
-
-      checkBtn.addEventListener('click', checkLogin);
+      checkBtn.addEventListener("click", checkLogin);
       function checkLogin() {
+        // #3 取得 Token (Token 僅需設定一次)
+        const token = document.cookie.replace(
+          /(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,
+          "$1"
+        );
+        axios.defaults.headers.common["Authorization"] = token;
         // #4 確認是否登入
         axios
           .post(`${url}/api/user/check`)
@@ -85,7 +84,7 @@
           });
       }
 
-      getProductsBtn.addEventListener('click', getProducts);
+      getProductsBtn.addEventListener("click", getProducts);
       function getProducts() {
         // #5 取得後台的產品列表
         axios
@@ -98,20 +97,20 @@
           });
       }
 
-      addProductBtn.addEventListener('click', addProduct);
+      addProductBtn.addEventListener("click", addProduct);
       function addProduct() {
         const product = {
           data: {
-            title: '[賣] 小米手機',
-            category: '手機',
+            title: "[賣] 小米手機",
+            category: "手機",
             origin_price: 100,
             price: 99,
-            unit: '台',
-            description: '描述',
-            content: '這是內容',
+            unit: "台",
+            description: "描述",
+            content: "這是內容",
             is_enabled: 1,
             imageUrl:
-              'https://images.unsplash.com/photo-1642406971781-e21eec77c419?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+              "https://images.unsplash.com/photo-1642406971781-e21eec77c419?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
           },
         };
 
@@ -127,10 +126,10 @@
       }
 
       // "-MtbEION1XD2lgmYEnag"
-      delProductBtn.addEventListener('click', delProduct);
+      delProductBtn.addEventListener("click", delProduct);
       function delProduct() {
         // #7 刪除一個產品
-        let id = '-MtbEION1XD2lgmYEnag';
+        let id = "-MtbEION1XD2lgmYEnag";
         axios
           .delete(`${url}/api/${path}/admin/product/${id}`)
           .then((res) => {
